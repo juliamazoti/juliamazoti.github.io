@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real para Dólar</title>
+    <link rel="shortcut icon" href="./img/coin.png">
+</head>
+
+<body>
+    <h1 class="titulo">Converta seus R$ Reais em $ Dólares</h1>
+    <label for="total">Total em reais R$:</label> <!--Rotulo para inserir valor em reais-->
+        <input type="text" id="total" class="c1"> <!--Dando classes para o rotulo de inserir o valor em reais-->
+        <button class="botao" onclick="converter()">Converter</button> <!-- Botão para iniciar o processo de conversão, adicionei uma classe e uma função-->
+        <p id="mensagem" class="erro" style="display: none;">Campo obrigatório!</p> <!-- linha para exibir resultado pós verificação de campo preenchido, e exibir alerta caso não esteja preenchido-->
+        <p id="resultado" class="resultadoAzul"></p> <!--Linha que exibe o resultado da conversão-->
+
+        <script>
+            function converter() { //Declaração da função converter
+                var total = document.getElementById('total'); //Pega o elemento de entrada de texto com o id "total"
+                var mensagem = document.getElementById('mensagem'); //Pega a mensagem de erro com o id "mensagem" 
+
+                if (total.value === "") { //Verifica se o campo de total em reais está vazio
+                    mensagem.style.display = 'block'; //Se sim, exibe a mensagem de erro
+                    total.style.borderColor = 'red'; //Se o campo estiver vazio, a borda ficará vermelha
+                    return; //Retorna pra interromper a execução da função
+                } else {
+                    mensagem.style.display = 'none'; //Não aparece a mensagem de erro
+                    total.style.borderColor = ''; //Tira a borda vermelha 
+                }
+
+                var totalReais = parseFloat(total.value); //Converter o valor do número pra número decimal
+                var totalDolares = totalReais / 4.97; //Faz o calculo 
+                resultado.textContent = 'O valor em dólares é: $' + totalDolares.toFixed(2); //Exibe o resultado da conversão
+            }
+        </script>
+</body>
+
+<style>
+    .erro{
+        color: red;
+    }
+    .resultadoAzul {
+        color: blue;
+        font-size: 30px;
+    }
+    .pig {
+        width: 300pt;
+        height: 300pt;
+    }
+    .titulo {
+        font-size: 40px;
+        color: rgb(230, 149, 162);
+    }
+    .botao {
+        background-color: rgb(230, 149, 162);
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+<img class= "pig" src="./img/porquinho.png">
+</html>
+
+<!--A única coisa que não consegui fazer prof, foi o processo reverso (Quando faço a primeira conversão, e depois
+    envio o campo vazio, a mensagem com a conversão não some, ela aparece junto com o "campo obrigatório!") :)-->
